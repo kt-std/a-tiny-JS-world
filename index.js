@@ -7,6 +7,32 @@
 
 // ======== OBJECTS DEFINITIONS ========
 // Define your objects here
+   
+   function Inhabitant (species, name, gender, hands, legs, sayings, friends){
+   		this.species = species;
+   		this.name = name;
+   		this.gender = gender;
+   		this.hands = hands === 0 ? `${this.species}s don't have hands! They have paws`: hands;
+   		this.legs = legs;
+   		this.friends = Array.isArray(friends) && friends.length ? friends : 'Forever alone...';
+   		this.saySomething = sayings;
+   }
+
+   const dog = new Inhabitant('dog', 'Rex', 'male', 0, 4, 'Woof!', ['Mukhtar', 'Sharik', 'Thunder']);
+   const cat = new Inhabitant('cat', 'Murka', 'female', 0, 4, 'Meow!', ['Murchik', 'Anna']);
+   const woman = new Inhabitant('woman', 'Anna', 'female', 2, 2, 'Hi, folks!', ['John', 'Tom']);
+   const man = new Inhabitant('man', 'John', 'male', 2, 2, 'Ahoy!');
+   const catWoman = new Inhabitant('superhero', 'Selina', 'female?', 2, 2, cat.saySomething, ['Alice', 'Arizona']);
+
+   ((array) => {
+	   array.forEach( obj => {
+	   	let string = '';
+	   	for(prop in obj){
+	   		Array.isArray(obj[prop])? string += `${obj[prop].join(", ")}; ` : string += `${obj[prop]}; `;
+	   	}
+	   	print(string);
+	   });
+   })([dog, cat, woman, man, catWoman]);
 
 
 // ======== OUTPUT ========
